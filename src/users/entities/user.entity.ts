@@ -1,12 +1,16 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
-import { Entity } from 'typeorm/browser/index.js';
+import {
+  Entity,
+  Column,
+  CreateDateColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -14,4 +18,7 @@ export class User {
 
   @Column()
   fullName: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }
