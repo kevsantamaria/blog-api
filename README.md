@@ -1,8 +1,4 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
-
-# NestJS Blog API
+# Blog API
 
 > A learning project built with [NestJS](https://nestjs.com/) — a basic blog REST API with JWT authentication.
 
