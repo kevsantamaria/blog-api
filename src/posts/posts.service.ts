@@ -4,6 +4,7 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Post } from './entities/post.entity';
 import { FindOptionsWhere, Repository } from 'typeorm';
+import { PaginationDto } from './dto/pagination.dto';
 
 @Injectable()
 export class PostsService {
@@ -22,7 +23,7 @@ export class PostsService {
     return this.postsRepository.save(post);
   }
 
-  findAll(category: string): Promise<Post[]> {
+  findAll({ limit, offset }: PaginationDto, category: string): Promise<Post[]> {
     const whereConditions: FindOptionsWhere<Post> = {};
 
     if (category) {
@@ -31,6 +32,8 @@ export class PostsService {
     return this.postsRepository.find({
       where: whereConditions,
       relations: { user: true },
+      skip: offset,
+      take: limit,
       select: { user: { email: true, fullName: true } },
     });
   }

@@ -14,6 +14,7 @@ import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Public } from 'src/common/decorators/public.decorator';
+import { PaginationDto } from './dto/pagination.dto';
 
 @Controller('posts')
 export class PostsController {
@@ -26,8 +27,11 @@ export class PostsController {
 
   @Public()
   @Get()
-  findAll(@Query('category') category: string) {
-    return this.postsService.findAll(category);
+  findAll(
+    @Query() pagination: PaginationDto,
+    @Query('category') category: string,
+  ) {
+    return this.postsService.findAll(pagination, category);
   }
 
   @Public()
