@@ -35,6 +35,12 @@ export class PostsController {
   }
 
   @Public()
+  @Get('deleted')
+  findAllWithDeleted() {
+    return this.postsService.findAllWithDeleted();
+  }
+
+  @Public()
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.postsService.findOne(id);
@@ -48,6 +54,7 @@ export class PostsController {
     return this.postsService.update(id, updatePostDto);
   }
 
+  @Public()
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.postsService.remove(id);

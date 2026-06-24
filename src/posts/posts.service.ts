@@ -3,7 +3,7 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Post } from './entities/post.entity';
-import { FindOptionsWhere, Repository } from 'typeorm';
+import { FindOptionsWhere, IsNull, Not, Repository } from 'typeorm';
 import { PaginationDto } from './dto/pagination.dto';
 
 @Injectable()
@@ -32,9 +32,18 @@ export class PostsService {
     return this.postsRepository.find({
       where: whereConditions,
       relations: { user: true },
+      select: { user: { email: true, fullName: true } },
       skip: offset,
       take: limit,
+    });
+  }
+
+  findAllWithDeleted(): Promise<Post[]> {
+    return this.postsRepository.find({
+      relations: { user: true },
       select: { user: { email: true, fullName: true } },
+      withDeleted: true,
+      where: { deletedAt: Not(IsNull()) },
     });
   }
 
@@ -63,6 +72,6 @@ export class PostsService {
     const post = await this.postsRepository.findOneBy({ id });
     if (!post) throw new NotFoundException('Post not found');
 
-    await this.postsRepository.delete(id);
+    await this.postsRepository.softDelete(id);
   }
 }

@@ -2,6 +2,7 @@ import { User } from '../../users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -33,4 +34,7 @@ export class Post {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 }
