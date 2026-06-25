@@ -2,6 +2,7 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  IsUrl,
   IsUUID,
   Matches,
 } from 'class-validator';
@@ -25,6 +26,10 @@ export class CreatePostDto {
   @IsOptional()
   @IsString({ each: true })
   tags?: string[];
+
+  @IsOptional()
+  @IsUrl()
+  imageUrl?: string;
 
   @IsUUID('4', { message: 'The userId must be a valid UUID v4' })
   @IsNotEmpty({ message: 'userId is required' })

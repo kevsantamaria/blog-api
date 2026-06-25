@@ -26,6 +26,9 @@ export class Post {
   @Column('simple-array', { nullable: true })
   tags: string[];
 
+  @Column({ nullable: true })
+  imageUrl: string;
+
   @ManyToOne(() => User)
   user: User;
 

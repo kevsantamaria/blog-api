@@ -63,7 +63,7 @@ src/
 - [ ] Add automated tests (unit + e2e)
 - [ ] Add API documentation (Swagger/OpenAPI)
 - [x] Pagination and filtering for posts
-- [ ] Upload images (Multer + Cloudinary/local storage)
+- [x] Upload images (Cloudinary)
 - [x] Soft delete (restore deleted posts)
 - [ ] Cache with Redis (interceptor for GET endpoints)
 - [ ] Event emitter (`post.created`, `comment.added` events)

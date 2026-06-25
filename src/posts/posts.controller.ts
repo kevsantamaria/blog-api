@@ -34,7 +34,6 @@ export class PostsController {
     return this.postsService.findAll(pagination, category);
   }
 
-  @Public()
   @Get('deleted')
   findAllWithDeleted() {
     return this.postsService.findAllWithDeleted();
@@ -54,7 +53,6 @@ export class PostsController {
     return this.postsService.update(id, updatePostDto);
   }
 
-  @Public()
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.postsService.remove(id);
