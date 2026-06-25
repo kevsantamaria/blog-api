@@ -14,6 +14,7 @@
 
 - User login with JWT tokens
 - JWT authentication guard applied globally
+- Image upload to Cloudinary
 - CRUD operations for blog posts
 
 ## Project setup
@@ -41,8 +42,15 @@ Create a `.env` file in the root directory:
 
 ```env
 PORT=3000
+
 JWT_SECRET=your-secret-key
 JWT_EXPIRES_IN=8h
+
+REFRESH_TOKEN_EXPIRES_DAYS=30
+
+CLOUDINARY_CLOUD_NAME=my-cloud
+CLOUDINARY_API_KEY=123456789
+CLOUDINARY_API_SECRET=abc123def456
 ```
 
 ## Project structure
@@ -52,6 +60,7 @@ src/
 ├── auth/        # JWT authentication (module, service, controller, guard, DTOs)
 ├── common/      # Shared decorators
 ├── posts/       # Blog posts CRUD (module, service, controller, DTOs, entities)
+├── upload/      # Image upload (Cloudinary)
 ├── users/       # Users CRUD (module, service, controller, DTOs, entities)
 ├── app.module.ts
 ├── database.module.ts
