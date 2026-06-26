@@ -7,7 +7,7 @@
 - **Framework:** NestJS 11 + TypeScript
 - **Database:** SQLite (via `better-sqlite3` + TypeORM)
 - **Auth:** JWT-based authentication with a global guard
-- **Validation:** `class-validator` + `class-transformer`
+- **Image upload:** Cloudinary
 - **Package manager:** pnpm
 
 ## Features
@@ -16,6 +16,7 @@
 - JWT authentication guard applied globally
 - Image upload to Cloudinary
 - CRUD operations for blog posts
+- Documentation with Swagger
 
 ## Project setup
 
@@ -43,7 +44,7 @@ Create a `.env` file in the root directory:
 ```env
 PORT=3000
 
-JWT_SECRET=your-secret-key
+JWT_SECRET=my-secret-key
 JWT_EXPIRES_IN=8h
 
 REFRESH_TOKEN_EXPIRES_DAYS=30
@@ -57,11 +58,11 @@ CLOUDINARY_API_SECRET=abc123def456
 
 ```
 src/
-├── auth/        # JWT authentication (module, service, controller, guard, DTOs)
-├── common/      # Shared decorators
-├── posts/       # Blog posts CRUD (module, service, controller, DTOs, entities)
-├── upload/      # Image upload (Cloudinary)
-├── users/       # Users CRUD (module, service, controller, DTOs, entities)
+├── auth/                   # JWT authentication
+├── common/decorators/      # Shared decorators
+├── posts/                  # Blog posts CRUD
+├── upload/                 # Image upload
+├── users/                  # Users CRUD
 ├── app.module.ts
 ├── database.module.ts
 └── main.ts
@@ -70,7 +71,7 @@ src/
 ## What's next
 
 - [ ] Add automated tests (unit + e2e)
-- [ ] Add API documentation (Swagger/OpenAPI)
+- [x] Add API documentation (Swagger/OpenAPI)
 - [x] Pagination and filtering for posts
 - [x] Upload images (Cloudinary)
 - [x] Soft delete (restore deleted posts)
