@@ -2,6 +2,7 @@ import {
   ConflictException,
   Injectable,
   NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -36,10 +37,9 @@ export class UsersService {
     return user;
   }
 
-  async findbyEmail(email: string) {
+  async findByEmail(email: string) {
     const user = await this.userRepository.findOneBy({ email });
-    if (!user)
-      throw new NotFoundException(`User with email ${email} not found`);
+    if (!user) throw new UnauthorizedException('Invalid credentials');
 
     return user;
   }

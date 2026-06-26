@@ -1,5 +1,6 @@
 allowBuilds:
   '@nestjs/core': true
+  '@scarf/scarf': true
   bcrypt: set this to true or false
   better-sqlite3: true
   unrs-resolver: true

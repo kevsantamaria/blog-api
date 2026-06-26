@@ -25,7 +25,8 @@ export class AuthService {
     email: string,
     password: string,
   ): Promise<Omit<User, 'password'>> {
-    const user = await this.usersService.findbyEmail(email);
+    const user = await this.usersService.findByEmail(email);
+
     if (user && (await compare(password, user?.password))) {
       const { password, ...result } = user;
       return result;
